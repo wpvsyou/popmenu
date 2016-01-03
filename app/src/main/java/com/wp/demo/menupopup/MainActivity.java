@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,9 +48,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
             actionBar.setCustomView(R.layout.action_bar_layout);
             actionBar.getCustomView().
                     findViewById(R.id.action_bar_more_btn).setOnClickListener(this);
+            ((TextView) actionBar.getCustomView().
+                    findViewById(R.id.action_bar_title_tv)).setText(getString(R.string.app_name));
         }
 
         View popView = LayoutInflater.from(this).inflate(R.layout.popup_main_layout, null);
+        popView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (null != mPopupWindow && mPopupWindow.isShowing()) {
+                    mPopupWindow.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         ListView popLv = (ListView) popView.findViewById(R.id.lv);
         final List<String> items = new ArrayList<String>();
         items.add("Sort by time");
@@ -139,9 +154,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.action_bar_more_btn) {
-            Toast.makeText(MainActivity.this,
-                    "the more button on the action bar view on click call back!",
-                    Toast.LENGTH_SHORT).show();
             if (mPopupWindow != null) {
                 if (mPopupWindow.isShowing()) {
                     mPopupWindow.dismiss();

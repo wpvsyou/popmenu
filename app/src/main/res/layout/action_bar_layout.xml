@@ -2,9 +2,31 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@android:color/holo_blue_bright"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@android:color/holo_blue_bright"
     android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/action_bar_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@android:drawable/ic_media_rew"/>
+
+    <TextView
+        android:id="@+id/action_bar_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/action_bar_back_btn"
+        android:paddingLeft="10dp"
+        android:text="Title"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <ImageButton
         android:id="@+id/action_bar_more_btn"
@@ -12,6 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:focusable="true"
         android:src="@android:drawable/ic_menu_more"/>
 </RelativeLayout>
